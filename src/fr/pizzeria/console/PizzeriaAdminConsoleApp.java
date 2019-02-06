@@ -40,12 +40,4 @@ public class PizzeriaAdminConsoleApp {
 			}
 		}
 	}
-=======
-public class PizzeriaAdminConsoleApp {
-
-	public static void main(String[] args) {
-		
-	}
-
->>>>>>> master
 }
