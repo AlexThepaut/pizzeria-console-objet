@@ -36,15 +36,21 @@ public class PizzeriaAdminConsoleApp {
 			switch(choix){
 			case 1: 
 				System.out.println("Liste des pizzas");
+				
+				for(int i = 0; i < pizzas.length; i++){
+					System.out.println(pizzas[i].code + " -> " + pizzas[i].libelle + " (" + pizzas[i].prix + ")");
+					System.out.println("");
+				}
+				
 				break;
 			case 2: 
-				System.out.println("Ajout d�une nouvelle pizza");
+				System.out.println("Ajout d'une nouvelle pizza");
 				break;
 			case 3: 
-				System.out.println("Mise � jour d�une pizza");
+				System.out.println("Mise a jour d'une pizza");
 				break;
 			case 4: 
-				System.out.println("Suppression d�une pizza");
+				System.out.println("Suppression d'une pizza");
 				break;
 			case 99: 
 			default: 
