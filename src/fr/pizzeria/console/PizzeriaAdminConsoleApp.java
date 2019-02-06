@@ -4,42 +4,39 @@ import java.util.Scanner;
 
 public class PizzeriaAdminConsoleApp {
 	
-	public Scanner choixUtilisateur = new Scanner(System.in);
-	
 	public static void main(String[] args) {
-		affMenu();
-		choixMenu();
-	}
-	
-	public static void affMenu(){
-		System.out.println("***** Pizzeria Administration *****");
-		System.out.println("1. Lister les pizzas");
-		System.out.println("2. Ajouter une nouvelle pizza");
-		System.out.println("3. Mettre à jour une pizza");
-		System.out.println("4. Supprimer une pizza");
-		System.out.println("99. Sortir");
-	}
-	
-	public void choixMenu(){
-		int choix = choixUtilisateur.nextInt();
+		Scanner choixUtilisateur = new Scanner(System.in);
+		boolean fermeture = false;
 		
-		switch(choix){
-		case 1: 
-			liste();
-			break;
-		case 2: 
-			Ajouter();
-			break;
-		case 3: 
-			Maj();
-			break;
-		case 4: 
-			Supprimer();
-			break;
-		case 99: 
-		default: 
+		while(fermeture != true){
+			System.out.println("***** Pizzeria Administration *****");
+			System.out.println("1. Lister les pizzas");
+			System.out.println("2. Ajouter une nouvelle pizza");
+			System.out.println("3. Mettre à jour une pizza");
+			System.out.println("4. Supprimer une pizza");
+			System.out.println("99. Sortir");
 			
-			break;
+			int choix = choixUtilisateur.nextInt();
+			
+			switch(choix){
+			case 1: 
+				System.out.println("Liste des pizzas");
+				break;
+			case 2: 
+				System.out.println("Ajout d’une nouvelle pizza");
+				break;
+			case 3: 
+				System.out.println("Mise à jour d’une pizza");
+				break;
+			case 4: 
+				System.out.println("Suppression d’une pizza");
+				break;
+			case 99: 
+			default: 
+				System.out.println("Au revoir :(");
+				fermeture = true;
+				break;
+			}
 		}
 	}
 }
