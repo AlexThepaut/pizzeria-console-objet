@@ -1,6 +1,5 @@
 package fr.pizzeria.console;
 
-<<<<<<< HEAD
 import java.util.Scanner;
 
 public class PizzeriaAdminConsoleApp {
