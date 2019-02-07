@@ -1,9 +1,10 @@
 package fr.pizzeria.console;
 
 import java.util.Scanner;
-import fr.pizzeria.model.*;
 import fr.pizzeria.service.AjouterPizzaService;
 import fr.pizzeria.service.ListerPizzasService;
+import fr.pizzeria.service.ModifierPizzaService;
+import fr.pizzeria.service.SupprimerPizzaService;
 import fr.pizzeria.dao.*;
 
 public class PizzeriaAdminConsoleApp{
@@ -41,31 +42,13 @@ public class PizzeriaAdminConsoleApp{
 				AjouterPizzaService ajout = new AjouterPizzaService();
 				ajout.executeUC(pizzaMem, choixUtilisateur);
 				break;
-			case 3: 
-				
-				System.out.println("Mise a jour d'une pizza");					// Cas de la mise à jour d'une pizza
-				
-				System.out.println("Veuiller choisir le code de la pizza à modifier : ");
-				String codeModifTempUtilisateur = choixUtilisateur.next();
-				
-				// Modification de la pizza avec les nouvelles données de l'utilisateur
-				System.out.println("Veuiler saisir le nouveau code : ");
-				String codeModTemp = choixUtilisateur.next();
-				System.out.println("Veuiler saisir le nouveau nom (sans espace) : ");
-				String nomModTemp = choixUtilisateur.next();
-				System.out.println("Veuiler saisir le nouveau prix : ");
-				double prixModTemp = Double.parseDouble(choixUtilisateur.next());
-				
-				pizzaMem.updatePizza(codeModifTempUtilisateur, new Pizza(codeModTemp, nomModTemp, prixModTemp));
-				
+			case 3: 															// Cas de modification d'une pizza
+				ModifierPizzaService modif = new ModifierPizzaService();
+				modif.executeUC(pizzaMem, choixUtilisateur);
 				break;
 			case 4: 
-				System.out.println("Suppression d'une pizza");					// Cas de la suppression d'une pizza
-				System.out.println("Veuiler choisir le code de la pizza a supprimer : ");
-				String codeSupTemp = choixUtilisateur.next();
-				
-				pizzaMem.deletePizza(codeSupTemp);
-				
+				SupprimerPizzaService sup = new SupprimerPizzaService();
+				sup.executeUC(pizzaMem, choixUtilisateur);
 				break;
 			case 99: 															// Cas de sortie du programme et Default
 			default: 
