@@ -14,7 +14,6 @@ public class PizzaMemDao implements IPizzaDao{
 	public PizzaMemDao() {
 		
 		// Initialisation des premieres pizzas
-		
 		pizzas.add(new Pizza("PEP", "Peperoni", 12.50d));
 		pizzas.add(new Pizza("MAR", "Margherita", 14.00d));
 		pizzas.add(new Pizza("REIN", "La Reine", 11.50d));
@@ -25,7 +24,9 @@ public class PizzaMemDao implements IPizzaDao{
 		pizzas.add(new Pizza("IND", "L'indienne", 14.00d));
 	}
 
-	@Override
+	/**
+	 * COucou
+	 */
 	public List<Pizza> findAllPizzas() {
 		return pizzas;
 	}

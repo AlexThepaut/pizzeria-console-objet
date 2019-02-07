@@ -11,9 +11,11 @@ public class PizzeriaAdminConsoleApp{
 	
 	public static void main(String[] args) {
 		
+		// Creation de la factory
 		MenuServiceFactory menu = new MenuServiceFactory();
 		
-		Scanner choixUtilisateur = new Scanner(System.in);	// Ouverture du Scanner
+		// Ouverture du Scanner
+		Scanner choixUtilisateur = new Scanner(System.in);	
 		
 		boolean fermeture = false;
 		
@@ -36,10 +38,13 @@ public class PizzeriaAdminConsoleApp{
 				menuService.executeUC(pizzaMem, choixUtilisateur);
 			}else{
 				System.out.println("Au revoir :(");
-				fermeture = true;					// Variable pour sortir de programme
+				// Variable pour sortir de programme
+				fermeture = true;					
 				break;
 			}
 		}
-		choixUtilisateur.close();	// Fermeture du Scanner
+		
+		// Fermeture du Scanner
+		choixUtilisateur.close();	
 	}
 }
