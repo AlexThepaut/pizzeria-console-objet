@@ -45,7 +45,7 @@ public class PizzeriaAdminConsoleApp {
 				
 				// Boucle pour afficher le tableau d'objet pizzas
 				for(int i = 0; i < pizzas.length; i++){
-					System.out.println(pizzas[i].code + " -> " + pizzas[i].libelle + " (" + pizzas[i].prix + ")");
+					pizzas[i].getInfos();
 				}
 				System.out.println("");
 				

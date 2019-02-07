@@ -24,5 +24,7 @@ public class Pizza {
 		this.prix = prix;
 	}
 	
-	
+	public void getInfos(){
+		System.out.println(this.code + " -> " + this.libelle + " (" + this.prix + ")");
+	}
 }
