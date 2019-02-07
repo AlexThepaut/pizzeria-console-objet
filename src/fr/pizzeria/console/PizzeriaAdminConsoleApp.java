@@ -2,11 +2,13 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 import fr.pizzeria.model.*;
+import fr.pizzeria.service.AjouterPizzaService;
+import fr.pizzeria.service.ListerPizzasService;
 import fr.pizzeria.dao.*;
 
 public class PizzeriaAdminConsoleApp{
 	
-	private static PizzaMemDao pizzaMem = new PizzaMemDao();
+	public static PizzaMemDao pizzaMem = new PizzaMemDao();
 	
 	public static void main(String[] args) {
 		
@@ -32,29 +34,12 @@ public class PizzeriaAdminConsoleApp{
 			// Selection de l'action à faire suivant le choix de l'utilisateur
 			switch(choix){
 			case 1: 															// Cas d'affichage de la liste
-				System.out.println("Liste des pizzas");
-				
-				// Boucle pour afficher le tableau d'objet pizzas
-				Pizza[] tempAllPizza = pizzaMem.findAllPizzas();
-				for(int i = 0; i < tempAllPizza.length; i++){
-					tempAllPizza[i].getInfos();
-				}
-				System.out.println("");
-				
+				ListerPizzasService liste = new ListerPizzasService();
+				liste.executeUC(pizzaMem, choixUtilisateur);
 				break;
 			case 2: 															// Cas de l'ajout d'une pizza
-				System.out.println("Ajout d'une nouvelle pizza");
-				
-				// Acquisition des données de la nonuvelle pizzas de l'utilisateur
-				System.out.println("Veuiler saisir le code : ");
-				String codeTemp = choixUtilisateur.next();
-				System.out.println("Veuiler saisir le nom (sans espace) : ");
-				String nomTemp = choixUtilisateur.next();
-				System.out.println("Veuiler saisir le prix : ");
-				Double prixTemp = Double.parseDouble(choixUtilisateur.next());
-				
-				pizzaMem.saveNewPizza(new Pizza(codeTemp, nomTemp, prixTemp));
-				
+				AjouterPizzaService ajout = new AjouterPizzaService();
+				ajout.executeUC(pizzaMem, choixUtilisateur);
 				break;
 			case 3: 
 				
