@@ -2,8 +2,8 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 import fr.pizzeria.dao.*;
-import fr.pizzeria.factory.MenuServiceFactory;
 import fr.pizzeria.service.MenuService;
+import fr.pizzeria.service.MenuServiceFactory;
 
 public class PizzeriaAdminConsoleApp{
 	

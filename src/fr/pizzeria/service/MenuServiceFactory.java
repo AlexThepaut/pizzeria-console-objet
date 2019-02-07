@@ -1,10 +1,4 @@
-package fr.pizzeria.factory;
-
-import fr.pizzeria.service.AjouterPizzaService;
-import fr.pizzeria.service.ListerPizzasService;
-import fr.pizzeria.service.MenuService;
-import fr.pizzeria.service.ModifierPizzaService;
-import fr.pizzeria.service.SupprimerPizzaService;
+package fr.pizzeria.service;
 
 public class MenuServiceFactory {
 	public MenuService controlleur(int choix){

@@ -2,10 +2,9 @@ package fr.pizzeria.model;
 
 public class Pizza {
 	
-	public int id;
-	public String code;
-	public String libelle;
-	public double prix;
+	private String code;
+	private String libelle;
+	private double prix;
 	
 	public Pizza(){
 		
@@ -17,14 +16,23 @@ public class Pizza {
 		this.prix = prix;
 	}
 	
-	public Pizza(int id, String code, String libelle, double prix){
-		this.id = id;
+	public void getInfos(){
+		System.out.println(this.code + " -> " + this.libelle + " (" + this.prix + ")");
+	}
+	
+	public void setInfoPizza(String code, String libelle, double prix){
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
 	}
 	
-	public void getInfos(){
-		System.out.println(this.code + " -> " + this.libelle + " (" + this.prix + ")");
+	public String getCode(){
+		return this.code;
+	}
+	public String getNom(){
+		return this.libelle;
+	}
+	public Double getPrix(){
+		return this.prix;
 	}
 }
