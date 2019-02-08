@@ -7,6 +7,9 @@ package fr.pizzeria.model;
  */
 public class Pizza {
 	
+	public static int nbPizza;
+	
+	private int id;
 	private String code;
 	private String libelle;
 	private double prix;
@@ -25,6 +28,7 @@ public class Pizza {
 	 * @param prix double
 	 */
 	public Pizza(String code, String libelle, double prix){
+		id = nbPizza++;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
@@ -47,6 +51,14 @@ public class Pizza {
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
+	}
+	
+	/**
+	 * Getter du code de la pizza.
+	 * @return Retourne une String.
+	 */
+	public int getId(){
+		return this.id;
 	}
 	
 	/**
