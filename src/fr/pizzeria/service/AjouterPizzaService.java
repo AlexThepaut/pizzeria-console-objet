@@ -7,7 +7,6 @@ import fr.pizzeria.model.Pizza;
 
 class AjouterPizzaService extends MenuService{
 
-	@Override
 	public void executeUC(IPizzaDao pizzaDonne, Scanner scan) {
 		// TODO Auto-generated method stub
 		System.out.println("Ajout d'une nouvelle pizza");

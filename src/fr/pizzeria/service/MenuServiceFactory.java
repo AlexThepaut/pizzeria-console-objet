@@ -1,6 +1,13 @@
 package fr.pizzeria.service;
 
 public class MenuServiceFactory {
+	/**
+	 * La méthode controlleur sert d'aiguillage vers chaque fonctionnalité
+	 * suivant le choix de l'utilisateur.
+	 * 
+	 * @param choix Choix de l'action de l'utilisateur.
+	 * @return Petourne un objet de type <b>MenuService</b> qui sera exécuté dans <b>PizzeriaAdminConsoleApp</b> ou bien NULL pour sortie de l'app.
+	 */
 	public MenuService controlleur(int choix){
 		
 		// Selection de l'action à faire suivant le choix de l'utilisateur

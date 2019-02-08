@@ -9,7 +9,6 @@ import fr.pizzeria.model.Pizza;
 
 class ListerPizzasService extends MenuService {
 
-	@Override
 	public void executeUC(IPizzaDao pizzaDonne, Scanner scan) {
 		// TODO Auto-generated method stub
 		System.out.println("Liste des pizzas");

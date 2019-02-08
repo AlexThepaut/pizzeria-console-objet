@@ -5,14 +5,21 @@ import java.util.List;
 
 import fr.pizzeria.model.Pizza;
 
+/**
+ * 
+ * @author Alex Thepaut
+ *
+ */
 public class PizzaMemDao implements IPizzaDao{
 
 	// Initialisation du tableau des pizzas
 	private static List<Pizza> pizzas = new ArrayList<Pizza>();
-	
-	
+
+	/**
+	 * Ce constructeur initialise les pizzas de base.
+	 */
 	public PizzaMemDao() {
-		
+
 		// Initialisation des premieres pizzas
 		pizzas.add(new Pizza("PEP", "Peperoni", 12.50d));
 		pizzas.add(new Pizza("MAR", "Margherita", 14.00d));
@@ -25,18 +32,25 @@ public class PizzaMemDao implements IPizzaDao{
 	}
 
 	/**
-	 * COucou
+	 * @return Retourne la liste des pizzas
 	 */
 	public List<Pizza> findAllPizzas() {
 		return pizzas;
 	}
 
-	@Override
+	/**
+	 * @param newPizza Prends un objet de type Pizza.
+	 * 
+	 * Ajoute une nouvelle pizza passée en paramètre à la liste actuelle.
+	 */
 	public void saveNewPizza(Pizza newPizza) {
 		pizzas.add(newPizza);
 	}
 
-	@Override
+	/**
+	 * @param codePizza Code de la pizza à modifier.
+	 * @param pizza Nouvelles données de la pizza à modifier.
+	 */
 	public void updatePizza(String codePizza, Pizza pizza) {
 		for(int i = 0; i < pizzas.size(); i++){
 			if(pizzas.get(i).getCode().equals(codePizza)){
@@ -45,12 +59,17 @@ public class PizzaMemDao implements IPizzaDao{
 		}
 	}
 
-	@Override
+	/**
+	 * @param codePizza Code de la pizza à supprimer.
+	 */
 	public void deletePizza(String codePizza) {
 		pizzas.remove(findPizzaByCode(codePizza));
 	}
 
-	@Override
+	/**
+	 * @param codePizza Code de la pizza à trouver.
+	 * @return Retourne la pizza avec le code demandé.
+	 */
 	public Pizza findPizzaByCode(String codePizza) {
 		int idFind = -1;
 		for(int i = 0; i < pizzas.size(); i++){
@@ -62,7 +81,10 @@ public class PizzaMemDao implements IPizzaDao{
 		return pizzas.get(idFind);
 	}
 
-	@Override
+	/**
+	 * @param codePizza Code de la pizza à trouver.
+	 * @return Retourne un boolean.
+	 */
 	public boolean pizzaExists(String codePizza) {
 		for(int i = 0; i < pizzas.size(); i++){
 			if(pizzas.get(i).getCode().equals(codePizza)){

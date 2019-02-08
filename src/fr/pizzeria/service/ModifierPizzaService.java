@@ -7,10 +7,9 @@ import fr.pizzeria.model.Pizza;
 
 class ModifierPizzaService extends MenuService{
 
-	@Override
 	public void executeUC(IPizzaDao pizzaDonne, Scanner scan) {
 		// TODO Auto-generated method stub
-		System.out.println("Mise a jour d'une pizza");					// Cas de la mise à jour d'une pizza
+		System.out.println("Mise a jour d'une pizza");
 		
 		System.out.println("Veuiller choisir le code de la pizza à modifier : ");
 		String codeModifTempUtilisateur = scan.next();

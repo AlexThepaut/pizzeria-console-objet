@@ -6,14 +6,19 @@ import fr.pizzeria.dao.IPizzaDao;
 
 /**
  * 
- * @author Diginamic
+ * @author Alex Thepaut
  *
  */
 public abstract class MenuService {
 	/**
 	 * 
-	 * @param pizzaDonne Données de l'interface
-	 * @param scan Objet Scanner pour l'utilisateur
+	 * @see ListerPizzasService
+	 * @see AjouterPizzaService
+	 * @see ModifierPizzaService
+	 * @see SupprimerPizzaService
+	 * 
+	 * @param pizzaDonne Données de l'interface.
+	 * @param scan Objet Scanner pour les entrées de l'utilisateur.
 	 */
 	public abstract void executeUC(IPizzaDao pizzaDonne, Scanner scan);
 }
