@@ -3,11 +3,12 @@ package fr.pizzeria.service;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.model.Pizza;
 
 class AjouterPizzaService extends MenuService{
 
-	public void executeUC(IPizzaDao pizzaDonne, Scanner scan) {
+	public void executeUC(IPizzaDao pizzaDonne, Scanner scan) throws SavePizzaException{
 		// TODO Auto-generated method stub
 		System.out.println("Ajout d'une nouvelle pizza");
 		

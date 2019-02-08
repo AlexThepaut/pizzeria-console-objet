@@ -3,6 +3,9 @@ package fr.pizzeria.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pizzeria.exception.DeletePizzaException;
+import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -43,15 +46,19 @@ public class PizzaMemDao implements IPizzaDao{
 	 * 
 	 * Ajoute une nouvelle pizza passée en paramètre à la liste actuelle.
 	 */
-	public void saveNewPizza(Pizza newPizza) {
-		pizzas.add(newPizza);
+	public void saveNewPizza(Pizza newPizza) throws SavePizzaException{
+		if(pizzaExists(newPizza.getCode()) == true){
+			throw new SavePizzaException("La pizza existe déjà");
+		}else{
+			pizzas.add(newPizza);			
+		}
 	}
 
 	/**
 	 * @param codePizza Code de la pizza à modifier.
 	 * @param pizza Nouvelles données de la pizza à modifier.
 	 */
-	public void updatePizza(String codePizza, Pizza pizza) {
+	public void updatePizza(String codePizza, Pizza pizza) throws UpdatePizzaException{
 		for(int i = 0; i < pizzas.size(); i++){
 			if(pizzas.get(i).getCode().equals(codePizza)){
 				PizzaMemDao.pizzas.get(i).setInfoPizza(pizza.getCode(), pizza.getNom(), pizza.getPrix());
@@ -62,8 +69,12 @@ public class PizzaMemDao implements IPizzaDao{
 	/**
 	 * @param codePizza Code de la pizza à supprimer.
 	 */
-	public void deletePizza(String codePizza) {
-		pizzas.remove(findPizzaByCode(codePizza));
+	public void deletePizza(String codePizza) throws DeletePizzaException{
+		if(pizzaExists(codePizza) == true){
+			pizzas.remove(findPizzaByCode(codePizza));
+		}else{
+			throw new DeletePizzaException("La pizza à supprimer n'existe pas");
+		}
 	}
 
 	/**

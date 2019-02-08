@@ -2,6 +2,7 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 import fr.pizzeria.dao.*;
+import fr.pizzeria.exception.*;
 import fr.pizzeria.service.MenuService;
 import fr.pizzeria.service.MenuServiceFactory;
 
@@ -16,7 +17,7 @@ public class PizzeriaAdminConsoleApp{
 
 	public static PizzaMemDao pizzaMemoire = new PizzaMemDao();
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 
 		// Creation de la factory
 		MenuServiceFactory menu = new MenuServiceFactory();
@@ -40,9 +41,13 @@ public class PizzeriaAdminConsoleApp{
 
 			int choix = choixUtilisateur.nextInt();
 			MenuService menuService = menu.controlleur(choix);
-
+			
 			if(menuService != null){
-				menuService.executeUC(pizzaMemoire, choixUtilisateur);
+				try {
+					menuService.executeUC(pizzaMemoire, choixUtilisateur);
+				}catch (StockageException stockageException) {
+					stockageException.getMessage();
+				}
 			}else{
 				System.out.println("Au revoir :(");
 				// Variable pour sortir de programme

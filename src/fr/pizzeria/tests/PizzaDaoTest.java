@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoTest {
@@ -18,7 +19,7 @@ public class PizzaDaoTest {
 	}
 
 	@Test
-	public void testDao() {
+	public void testDao() throws StockageException {
 		pizzaDaoTest.saveNewPizza(new Pizza("CHO", "Chorizo", 13.5d));
 		assertTrue("La nouvelle pizza existe", pizzaDaoTest.pizzaExists("CHO"));
 		pizzaDaoTest.updatePizza("CHO", new Pizza("CHO", "Chorizal", 13.0d));
