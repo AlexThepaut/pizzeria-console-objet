@@ -25,23 +25,7 @@ class ModifierPizzaService extends MenuService{
 			System.out.println("Veuiler saisir le nouveau prix : ");
 			double prixModTemp = Double.parseDouble(scan.next());
 			System.out.println("Veuiler choisir la nouvelle catégorie : ");
-			
-			
-			CategoriePizza[] listCategorie = Pizza.getListCategoriePizza();
-			for(int i = 0; i < listCategorie.length; i ++){
-				System.out.println((i+1) + "." + listCategorie[i]);
-			}
-			
-			int choixCategorie = scan.nextInt() - 1;
-			CategoriePizza categoriePizza = null;
-			for(int i = 0; i < listCategorie.length ; i ++)
-			{
-				if(choixCategorie == i)
-				{
-					categoriePizza = listCategorie[i];
-				}
-			}
-			
+			CategoriePizza categoriePizza = MenuServiceFactory.categorieControlleur(scan);
 			pizzaDonne.updatePizza(codeModifTempUtilisateur, new Pizza(codeModTemp, nomModTemp, prixModTemp, categoriePizza));
 		}			
 	}

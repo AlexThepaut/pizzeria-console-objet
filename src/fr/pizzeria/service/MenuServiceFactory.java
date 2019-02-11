@@ -1,5 +1,10 @@
 package fr.pizzeria.service;
 
+import java.util.Scanner;
+
+import fr.pizzeria.model.CategoriePizza;
+import fr.pizzeria.model.Pizza;
+
 public class MenuServiceFactory {
 	/**
 	 * La méthode controlleur sert d'aiguillage vers chaque fonctionnalité
@@ -24,5 +29,22 @@ public class MenuServiceFactory {
 		default: 
 			return null;
 		}
+	}
+	
+	public static CategoriePizza categorieControlleur (Scanner scan){
+		CategoriePizza[] listCategorie = Pizza.getListCategoriePizza();
+		for(int i = 0; i < listCategorie.length; i ++){
+			System.out.println((i+1) + "." + listCategorie[i]);
+		}
+		
+		int choixCategorie = scan.nextInt() - 1;
+		for(int i = 0; i < listCategorie.length ; i ++)
+		{
+			if(choixCategorie == i)
+			{
+				return listCategorie[i];
+			}
+		}
+		return null;
 	}
 }

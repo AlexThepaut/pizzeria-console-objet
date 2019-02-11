@@ -21,22 +21,7 @@ class AjouterPizzaService extends MenuService{
 		System.out.println("Veuiler saisir le prix : ");
 		Double prixTemp = Double.parseDouble(scan.next());
 		System.out.println("Veuiler choisir la catégorie : ");
-		
-		
-		CategoriePizza[] listCategorie = Pizza.getListCategoriePizza();
-		for(int i = 0; i < listCategorie.length; i ++){
-			System.out.println((i+1) + "." + listCategorie[i]);
-		}
-		
-		int choixCategorie = scan.nextInt() - 1;
-		CategoriePizza categoriePizza = null;
-		for(int i = 0; i < listCategorie.length ; i ++)
-		{
-			if(choixCategorie == i)
-			{
-				categoriePizza = listCategorie[i];
-			}
-		}
+		CategoriePizza categoriePizza = MenuServiceFactory.categorieControlleur(scan);
 		pizzaDonne.saveNewPizza(new Pizza(codeTemp, nomTemp, prixTemp, categoriePizza));
 	}
 
