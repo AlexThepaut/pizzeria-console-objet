@@ -13,6 +13,7 @@ public class Pizza {
 	private String code;
 	private String libelle;
 	private double prix;
+	private CategoriePizza categorie;
 	
 	/**
 	 * Constructeur par défaut
@@ -26,19 +27,24 @@ public class Pizza {
 	 * @param code	String
 	 * @param libelle String
 	 * @param prix double
+	 * @param categorie CategoriePizza
 	 */
-	public Pizza(String code, String libelle, double prix){
+	public Pizza(String code, String libelle, double prix, CategoriePizza categorie){
 		id = nbPizza++;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
+		this.categorie = categorie;
 	}
 	
 	/**
 	 * Méthode d'affichage des infos de la pizza.
+	 * @return 
 	 */
-	public void getInfos(){
-		System.out.println(this.code + " -> " + this.libelle + " (" + this.prix + ")");
+	public String toString(){
+		StringBuilder stringEnvoie = new StringBuilder();
+		stringEnvoie.append(this.code).append(" -> ").append(this.libelle).append(" (").append(this.prix).append(") ").append(this.categorie.toString());
+		return stringEnvoie.toString();
 	}
 	
 	/**
@@ -83,5 +89,17 @@ public class Pizza {
 	 */
 	public Double getPrix(){
 		return this.prix;
+	}
+
+	public CategoriePizza getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(CategoriePizza categorie) {
+		this.categorie = categorie;
+	}
+	
+	public static CategoriePizza[] getListCategoriePizza(){
+		return CategoriePizza.values();
 	}
 }

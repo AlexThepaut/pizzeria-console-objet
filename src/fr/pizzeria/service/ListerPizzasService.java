@@ -16,7 +16,7 @@ class ListerPizzasService extends MenuService {
 		// Boucle pour afficher le tableau d'objet pizzas
 		List<Pizza> tempAllPizza = pizzaDonne.findAllPizzas();
 		for (Pizza temp : tempAllPizza) {
-			temp.getInfos();
+			System.out.println(temp.toString());
 		}
 		System.out.println("");
 	}

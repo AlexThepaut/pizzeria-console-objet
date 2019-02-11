@@ -20,9 +20,9 @@ public class PizzaDaoTest {
 
 	@Test
 	public void testDao() throws StockageException {
-		pizzaDaoTest.saveNewPizza(new Pizza("CHO", "Chorizo", 13.5d));
+		pizzaDaoTest.saveNewPizza(new Pizza("CHO", "Chorizo", 13.5d, null));
 		assertTrue("La nouvelle pizza existe", pizzaDaoTest.pizzaExists("CHO"));
-		pizzaDaoTest.updatePizza("CHO", new Pizza("CHO", "Chorizal", 13.0d));
+		pizzaDaoTest.updatePizza("CHO", new Pizza("CHO", "Chorizal", 13.0d, null));
 		assertTrue("La pizza est modifiée", pizzaDaoTest.findPizzaByCode("CHO").getNom().equals("Chorizal"));
 		assertTrue("La pizza est modifiée", pizzaDaoTest.findPizzaByCode("CHO").getPrix().equals(13.0d));
 		pizzaDaoTest.deletePizza("CHO");

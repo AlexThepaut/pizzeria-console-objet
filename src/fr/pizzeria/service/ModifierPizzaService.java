@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 class ModifierPizzaService extends MenuService{
@@ -23,8 +24,25 @@ class ModifierPizzaService extends MenuService{
 			String nomModTemp = scan.next();
 			System.out.println("Veuiler saisir le nouveau prix : ");
 			double prixModTemp = Double.parseDouble(scan.next());
+			System.out.println("Veuiler choisir la nouvelle catégorie : ");
 			
-			pizzaDonne.updatePizza(codeModifTempUtilisateur, new Pizza(codeModTemp, nomModTemp, prixModTemp));
+			
+			CategoriePizza[] listCategorie = Pizza.getListCategoriePizza();
+			for(int i = 0; i < listCategorie.length; i ++){
+				System.out.println((i+1) + "." + listCategorie[i]);
+			}
+			
+			int choixCategorie = scan.nextInt() - 1;
+			CategoriePizza categoriePizza = null;
+			for(int i = 0; i < listCategorie.length ; i ++)
+			{
+				if(choixCategorie == i)
+				{
+					categoriePizza = listCategorie[i];
+				}
+			}
+			
+			pizzaDonne.updatePizza(codeModifTempUtilisateur, new Pizza(codeModTemp, nomModTemp, prixModTemp, categoriePizza));
 		}			
 	}
 }
