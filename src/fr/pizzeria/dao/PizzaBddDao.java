@@ -72,21 +72,42 @@ public class PizzaBddDao implements IPizzaDao{
 
 	public void updatePizza(String codePizza, Pizza pizza) throws UpdatePizzaException {
 		// TODO Auto-generated method stub
-		/*bdd.modificationBdd("UPDATE pizzabdd.pizzas SET('"
-				+ pizza.getCode() + "', '"
-				+ pizza.getNom() + "', "
-				+ pizza.getPrix() + ", '"
-				+ pizza.getCategorie() + "') WHERE code_pizzas LIKE '"+ pizza.getCode()+ "'");
-		bdd.fermeture();*/
+		bdd.modificationBdd("UPDATE pizzabdd.pizzas SET "
+				+ "code_pizzas='" + pizza.getCode() + "', "
+				+ "nom_pizzas='" + pizza.getNom() + "', "
+				+ "prix_pizzas=" + pizza.getPrix() + ", "
+				+ "categorie_pizzas='" + pizza.getCategorie() + "' WHERE code_pizzas LIKE '"+ pizza.getCode()+ "'");
+		bdd.fermeture();
 	}
 
 	public void deletePizza(String codePizza) throws DeletePizzaException {
 		// TODO Auto-generated method stub
-		
+		Pizza pizzaTemp = findPizzaByCode(codePizza);
+		bdd.modificationBdd("DELETE FROM pizzabdd.pizzas WHERE id_pizzas=" + pizzaTemp.getId());
 	}
 
 	public Pizza findPizzaByCode(String codePizza) {
-		// TODO Auto-generated method stub
+		ResultSet resultat = bdd.recupererBdd("SELECT * FROM pizzabdd.pizzas WHERE code_pizzas LIKE '" + codePizza + "'");
+		int id;
+		String code;
+		String nom;
+		float prix;
+		try {
+			Pizza pizzaTemp = null;
+			while(resultat.next()){
+				id = resultat.getInt("id_pizzas");
+				code = resultat.getString("code_pizzas");
+				nom = resultat.getString("nom_pizzas");
+				prix = resultat.getFloat("prix_pizzas");
+				pizzaTemp = new Pizza(id, code, nom, prix, CategoriePizza.valueOf(resultat.getString("categorie_pizzas")));				
+			}
+			bdd.fermeture();
+			return pizzaTemp;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		bdd.fermeture();
 		return null;
 	}
 

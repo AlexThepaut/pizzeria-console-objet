@@ -22,13 +22,6 @@ public class Pizza {
 		
 	}
 	
-	public Pizza(String code, String libelle, double prix){
-		id = nbPizza++;
-		this.code = code;
-		this.libelle = libelle;
-		this.prix = prix;
-	}
-	
 	/**
 	 * 
 	 * @param code	String
@@ -38,6 +31,14 @@ public class Pizza {
 	 */
 	public Pizza(String code, String libelle, double prix, CategoriePizza categorie){
 		id = nbPizza++;
+		this.code = code;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.categorie = categorie;
+	}
+	
+	public Pizza(int id, String code, String libelle, double prix, CategoriePizza categorie){
+		this.id = id;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
