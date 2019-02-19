@@ -11,7 +11,6 @@ import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.PizzaComparator;
 
 class ListerPizzasService extends MenuService {
-
 	public void executeUC(IPizzaDao pizzaDonne, Scanner scan) {
 		// TODO Auto-generated method stub
 		System.out.println("Liste des pizzas par : ");
@@ -45,3 +44,5 @@ class ListerPizzasService extends MenuService {
 		System.out.println("");
 	}
 }
+
+
