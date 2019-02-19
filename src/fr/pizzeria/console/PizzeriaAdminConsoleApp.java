@@ -15,7 +15,7 @@ import fr.pizzeria.service.MenuServiceFactory;
  */
 public class PizzeriaAdminConsoleApp{
 
-	public static PizzaMemDao pizzaMemoire = new PizzaMemDao();
+	public static PizzaBddDao pizzaMemoire = new PizzaBddDao();
 
 	public static void main(String[] args){
 
