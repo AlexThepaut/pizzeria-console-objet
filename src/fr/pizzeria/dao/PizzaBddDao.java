@@ -1,7 +1,6 @@
 package fr.pizzeria.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +42,9 @@ public class PizzaBddDao implements IPizzaDao{
 	
 	public List<Pizza> findAllPizzas() {
 		List<Pizza> pizzasTemp = new ArrayList<Pizza>();
-		ResultSet resultat = bdd.recupererBdd("SELECT * FROM pizzas");
-		bdd.fermeture();
+		Statement connexion = bdd.initConnection();
+		ResultSet resultat = bdd.recupererBdd(connexion, "SELECT * FROM pizzas");
+
 		try {
 			while(resultat.next()){
 				String code = resultat.getString("code_pizzas");
@@ -56,38 +56,43 @@ public class PizzaBddDao implements IPizzaDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		bdd.fermeture();
+		bdd.fermeture(connexion);
 		return pizzasTemp;
 	}
 
 	public void saveNewPizza(Pizza pizza) throws SavePizzaException {
 		// TODO Auto-generated method stub
-		bdd.modificationBdd("INSERT INTO pizzabdd.pizzas (code_pizzas, nom_pizzas, prix_pizzas, categorie_pizzas) VALUES('"
+		Statement connexion = bdd.initConnection();
+		bdd.modificationBdd(connexion, "INSERT INTO pizzabdd.pizzas (code_pizzas, nom_pizzas, prix_pizzas, categorie_pizzas) VALUES('"
 				+ pizza.getCode() + "', '"
 				+ pizza.getNom() + "', "
 				+ pizza.getPrix() + ", '"
 				+ pizza.getCategorie() + "')");
-		bdd.fermeture();
+		bdd.fermeture(connexion);
 	}
 
 	public void updatePizza(String codePizza, Pizza pizza) throws UpdatePizzaException {
 		// TODO Auto-generated method stub
-		bdd.modificationBdd("UPDATE pizzabdd.pizzas SET "
+		Statement connexion = bdd.initConnection();
+		bdd.modificationBdd(connexion, "UPDATE pizzabdd.pizzas SET "
 				+ "code_pizzas='" + pizza.getCode() + "', "
 				+ "nom_pizzas='" + pizza.getNom() + "', "
 				+ "prix_pizzas=" + pizza.getPrix() + ", "
-				+ "categorie_pizzas='" + pizza.getCategorie() + "' WHERE code_pizzas LIKE '"+ pizza.getCode()+ "'");
-		bdd.fermeture();
+				+ "categorie_pizzas='" + pizza.getCategorie() + "' WHERE code_pizzas LIKE '"+ codePizza + "'");
+		bdd.fermeture(connexion);
 	}
 
 	public void deletePizza(String codePizza) throws DeletePizzaException {
 		// TODO Auto-generated method stub
 		Pizza pizzaTemp = findPizzaByCode(codePizza);
-		bdd.modificationBdd("DELETE FROM pizzabdd.pizzas WHERE id_pizzas=" + pizzaTemp.getId());
+		Statement connexion = bdd.initConnection();
+		bdd.modificationBdd(connexion, "DELETE FROM pizzabdd.pizzas WHERE id_pizzas=" + pizzaTemp.getId());
+		bdd.fermeture(connexion);
 	}
 
 	public Pizza findPizzaByCode(String codePizza) {
-		ResultSet resultat = bdd.recupererBdd("SELECT * FROM pizzabdd.pizzas WHERE code_pizzas LIKE '" + codePizza + "'");
+		Statement connexion = bdd.initConnection();
+		ResultSet resultat = bdd.recupererBdd(connexion, "SELECT * FROM pizzabdd.pizzas WHERE code_pizzas LIKE '" + codePizza + "'");
 		int id;
 		String code;
 		String nom;
@@ -101,20 +106,20 @@ public class PizzaBddDao implements IPizzaDao{
 				prix = resultat.getFloat("prix_pizzas");
 				pizzaTemp = new Pizza(id, code, nom, prix, CategoriePizza.valueOf(resultat.getString("categorie_pizzas")));				
 			}
-			bdd.fermeture();
 			return pizzaTemp;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		bdd.fermeture();
+		bdd.fermeture(connexion);
 		return null;
 	}
 
 	public boolean pizzaExists(String codePizza) {
 		// TODO Auto-generated method stub
-		bdd.recupererBdd("SELECT code_pizzas FROM pizzabdd.pizzas WHERE code_pizzas LIKE '" + codePizza + "'");
-		bdd.fermeture();
+		Statement connexion = bdd.initConnection();
+		bdd.recupererBdd(connexion, "SELECT code_pizzas FROM pizzabdd.pizzas WHERE code_pizzas LIKE '" + codePizza + "'");
+		bdd.fermeture(connexion);
 		return true;
 	}
 }

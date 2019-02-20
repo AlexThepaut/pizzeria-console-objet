@@ -9,8 +9,6 @@ import java.util.Properties;
 
 public class BddMySql {
 	
-	public Statement connexion = initConnection();
-	
 	public BddMySql(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -37,9 +35,8 @@ public class BddMySql {
 		return null;
 	}
 	
-	public void modificationBdd(String requete){
+	public void modificationBdd(Statement connexion, String requete){
 		try {
-			this.connexion = initConnection();
 			connexion.executeUpdate(requete);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -47,9 +44,8 @@ public class BddMySql {
 		}
 	}
 	
-	public ResultSet recupererBdd(String requete){
+	public ResultSet recupererBdd(Statement connexion, String requete){
 		try {
-			Statement connexion = initConnection();
 			ResultSet resultat = connexion.executeQuery(requete);
 			return resultat;
 		} catch (SQLException e) {
@@ -59,9 +55,9 @@ public class BddMySql {
 		return null;
 	}
 	
-	public void fermeture(){
+	public void fermeture(Statement connexion){
 		try {
-			this.connexion.close();
+			connexion.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
